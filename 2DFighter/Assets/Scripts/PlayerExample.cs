@@ -12,9 +12,6 @@ public class PlayerExample : MonoBehaviour
         set { frictionModifier = value; }
     }
 
-    [SerializeField]
-    protected int playerNum;
-
     //added variables for movement, acceleration for ramped up speed
     int horizMove = 0;
     protected int accelerator = 50;
@@ -61,33 +58,15 @@ public class PlayerExample : MonoBehaviour
     {
         bool keyDown = false;
 
-        if (playerNum == 1)
+        if (Input.GetKey(KeyCode.D))
         {
-            if (Input.GetKey(KeyCode.D))
-            {
-                keyDown = true;
-                if (horizMove < MAX_MOVE) { horizMove += (int)(accelerator * frictionModifier); }
-            }
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                keyDown = true;
-                if (horizMove > -MAX_MOVE) { horizMove -= (int)(accelerator * frictionModifier); }
-            }
+            keyDown = true;
+            if (horizMove < MAX_MOVE) { horizMove += (int)(accelerator * frictionModifier); }
         }
-        else if (playerNum == 2)
+        if (Input.GetKey(KeyCode.A))
         {
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                keyDown = true;
-                if (horizMove < MAX_MOVE) { horizMove += (int)(accelerator * frictionModifier); }
-            }
-
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                keyDown = true;
-                if (horizMove > -MAX_MOVE) { horizMove -= (int)(accelerator * frictionModifier); }
-            }
+            keyDown = true;
+            if (horizMove > -MAX_MOVE) { horizMove -= (int)(accelerator * frictionModifier); }
         }
 
         if (!keyDown)
@@ -112,28 +91,7 @@ public class PlayerExample : MonoBehaviour
         {
             isGrounded = false;
             myRigidBody.AddForce(new Vector2(0, jumpForce));
-        }
-
-        if (playerNum == 1)
-        {
-            if (!isGrounded)
-            {
-                if (Input.GetKey(KeyCode.S))
-                {
-                    myRigidBody.AddForce(new Vector2(0, -jumpForce / 5));
-                }
-            }
-        }
-        else if (playerNum == 2)
-        {
-            if (!isGrounded)
-            {
-                if (Input.GetKey(KeyCode.DownArrow))
-                {
-                    myRigidBody.AddForce(new Vector2(0, -jumpForce / 5));
-                }
-            }
-        }
+        }        
 
         myRigidBody.velocity = new Vector2(horizontal * movementSpeed, myRigidBody.velocity.y);
 
@@ -154,35 +112,17 @@ public class PlayerExample : MonoBehaviour
 
     private void HandleInput()
     {
-        if (playerNum == 1)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                jump = true;
-            }
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                attack = true;
-            }
-            else if (Input.GetKeyDown(KeyCode.Z))
-            {
-                attack2 = true;
-            }
+            jump = true;
         }
-        else if (playerNum == 2)
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                jump = true;
-            }
-            if (Input.GetKeyDown(KeyCode.RightShift))
-            {
-                attack = true;
-            }
-            else if (Input.GetKeyDown(KeyCode.RightControl))
-            {
-                attack2 = true;
-            }
+            attack = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Z))
+        {
+            attack2 = true;
         }
     }
 
