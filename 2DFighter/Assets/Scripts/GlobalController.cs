@@ -7,8 +7,17 @@ public class GlobalController : MonoBehaviour {
 
     static bool loadLevel = false;
 
+
+    //public GameObject bullet;
+    //bool bulletSpawn = false;
+
+    public int timer = 600;
+    public int ticker = 0;
+
 	void Start () {
-        if(!loadLevel)
+        //bullet = Resources.Load("bullet") as GameObject;
+
+        if (!loadLevel)
         {
             SceneManager.LoadScene("2dfighter");
             loadLevel = true;
@@ -16,6 +25,22 @@ public class GlobalController : MonoBehaviour {
     }
 	
 	void Update () {
+        /*
+        if(ticker < timer)
+        {
+            ticker++;
+        }
+        else
+        {
+            if (!bulletSpawn)
+            {
+                Debug.Log("Bullet Spawn");
+                Instantiate(bullet, new Vector3(0, 0, 0), Quaternion.identity);
+                bulletSpawn = true;
+            }
+        }
+        */
+
 		if(Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("dev");
