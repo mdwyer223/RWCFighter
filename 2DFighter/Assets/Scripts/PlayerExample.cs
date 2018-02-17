@@ -29,6 +29,9 @@ public class PlayerExample : MonoBehaviour
     [SerializeField]
     protected float movementSpeed;
 
+    [SerializeField]
+    int playerNum;
+
     private bool attack;
 
     private bool attack2;
@@ -42,11 +45,22 @@ public class PlayerExample : MonoBehaviour
     [SerializeField]
     private float jumpForce;
 
+    KeyCode right;
+
     void Start()
     {
         facingRight = true;
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
+
+        if(playerNum == 1)
+        {
+            right = KeyCode.D;
+        }
+        else if (playerNum == 2)
+        {
+            right = KeyCode.RightArrow;
+        }
     }
 
     void Update()
@@ -58,7 +72,7 @@ public class PlayerExample : MonoBehaviour
     {
         bool keyDown = false;
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(right))
         {
             keyDown = true;
             if (horizMove < MAX_MOVE) { horizMove += (int)(accelerator * frictionModifier); }
@@ -91,7 +105,15 @@ public class PlayerExample : MonoBehaviour
         {
             isGrounded = false;
             myRigidBody.AddForce(new Vector2(0, jumpForce));
-        }        
+        }   
+        
+        if(Input.GetKey(KeyCode.S))
+        {
+            if(!isGrounded)
+            {
+                myRigidBody.AddForce(new Vector2(0, -jumpForce / 2));
+            }
+        }
 
         myRigidBody.velocity = new Vector2(horizontal * movementSpeed, myRigidBody.velocity.y);
 
