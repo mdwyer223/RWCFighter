@@ -8,18 +8,17 @@ public class GlobalController : MonoBehaviour {
     static bool loadLevel = false;
 
 
-    //public GameObject bullet;
+    public GameObject bullet;
     //bool bulletSpawn = false;
 
     public int timer = 600;
     public int ticker = 0;
 
 	void Start () {
-        //bullet = Resources.Load("bullet") as GameObject;
-
+        bullet = Resources.Load("Assets/Prefab/Bullet") as GameObject;
         if (!loadLevel)
         {
-            SceneManager.LoadScene("2dfighter");
+            SceneManager.LoadScene("2dFighterUI");
             loadLevel = true;
         }
     }
@@ -48,7 +47,7 @@ public class GlobalController : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.LeftAlt))
         {
-            SceneManager.LoadScene("2dfighter");
+            SceneManager.LoadScene("2DFighterUI");
         }
 	}
 }
