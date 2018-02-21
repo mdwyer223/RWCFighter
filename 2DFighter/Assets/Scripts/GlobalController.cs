@@ -18,7 +18,7 @@ public class GlobalController : MonoBehaviour {
         bullet = Resources.Load("Assets/Prefab/Bullet") as GameObject;
         if (!loadLevel)
         {
-            SceneManager.LoadScene("2dFighterUI");
+            SceneManager.LoadScene("2dfighter");
             loadLevel = true;
         }
     }
@@ -42,12 +42,15 @@ public class GlobalController : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("dev");
+            Debug.Log("HITTING ESC");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
 
+        /*
         if(Input.GetKeyDown(KeyCode.LeftAlt))
         {
             SceneManager.LoadScene("2DFighterUI");
         }
+        */
 	}
 }
