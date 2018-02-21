@@ -10,7 +10,7 @@ public class GlobalController : MonoBehaviour {
 	void Start () {
         if(!loadLevel)
         {
-            SceneManager.LoadScene("2dfighter");
+            //.LoadScene("2dfighter");
             loadLevel = true;
         }
     }
@@ -18,7 +18,7 @@ public class GlobalController : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("dev");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
 
         if(Input.GetKeyDown(KeyCode.LeftAlt))
