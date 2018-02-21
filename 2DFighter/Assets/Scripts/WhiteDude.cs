@@ -6,8 +6,6 @@ public class WhiteDude : Player {
 
 	// Use this for initialization
 	protected override void Start () {
-        facingRight = false;
-
         base.Start();
 		
 	}
