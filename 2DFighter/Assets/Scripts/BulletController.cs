@@ -84,7 +84,24 @@ public class BulletController : MonoBehaviour {
     {
         isShooting = true;
         // need to adjust position based on players direction
-        transform.position = t.position;
+
+        Vector3 playerPos = t.position;
+        Vector3 playerDirection = new Vector3(0,0,0);
+        if(facingRight)
+        {
+            playerDirection.x = .5f;
+        }
+        else
+        {
+            playerDirection.x = -.5f;
+        }
+        float spawnDistance = 2;
+
+        Vector3 spawnPos = playerPos + (playerDirection * spawnDistance);
+
+        Debug.Log(spawnPos);
+
+        transform.position = spawnPos;
         transform.localScale = new Vector3(1, 1, 1);
     }
 
@@ -106,5 +123,9 @@ public class BulletController : MonoBehaviour {
             }
         }
         
+        if(col.gameObject.tag == "wall")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

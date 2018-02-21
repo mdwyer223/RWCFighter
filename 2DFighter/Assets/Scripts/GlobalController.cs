@@ -16,6 +16,7 @@ public class GlobalController : MonoBehaviour {
 
 	void Start () {
         //bullet = Resources.Load("bullet") as GameObject;
+        //bullet = Resources.Load("Assets/Prefab/Bullet") as GameObject;
 
         if (!loadLevel)
         {
