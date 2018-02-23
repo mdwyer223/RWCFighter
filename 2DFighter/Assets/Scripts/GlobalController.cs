@@ -9,41 +9,50 @@ public class GlobalController : MonoBehaviour {
 
 
     public GameObject bullet;
-    //bool bulletSpawn = false;
+    bool bulletSpawn = false;
 
-    public int timer = 600;
+    public int timer = 200;
     public int ticker = 0;
 
 	void Start () {
-        bullet = Resources.Load("Assets/Prefab/Bullet") as GameObject;
-        if (!loadLevel)
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            SceneManager.LoadScene("2dfighter");
+            Debug.Log("Loaded bullet into scene");
+            bullet = Resources.Load("Bullet") as GameObject;
+            Debug.Log(bullet);
+        }
+        /*
+         if (!loadLevel)
+        {
+            SceneManager.LoadScene("2DFighterUI");
             loadLevel = true;
         }
+        */
     }
 	
 	void Update () {
-        /*
-        if(ticker < timer)
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            ticker++;
-        }
-        else
-        {
-            if (!bulletSpawn)
+            if (ticker < timer)
             {
-                Debug.Log("Bullet Spawn");
-                Instantiate(bullet, new Vector3(0, 0, 0), Quaternion.identity);
-                bulletSpawn = true;
+                ticker++;
             }
-        }
-        */
+            else
+            {
+                if (!bulletSpawn)
+                {
+                    Debug.Log("Bullet Spawn");
+                    Instantiate(bullet, new Vector3(0, 0, 0), Quaternion.identity);
+                    bulletSpawn = true;
+                }
+                ticker = 0;
+            }
 
-		if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("HITTING ESC");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            }
         }
 
         /*
