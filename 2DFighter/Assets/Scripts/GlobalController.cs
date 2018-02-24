@@ -9,7 +9,7 @@ public class GlobalController : MonoBehaviour {
 
 
     public GameObject bullet;
-    bool bulletSpawn = false;
+    bool bulletSpawn = true;
 
     public int timer = 200;
     public int ticker = 0;
@@ -39,11 +39,11 @@ public class GlobalController : MonoBehaviour {
             }
             else
             {
-                if (!bulletSpawn)
+                if (bulletSpawn)
                 {
                     Debug.Log("Bullet Spawn");
                     Instantiate(bullet, new Vector3(0, 0, 0), Quaternion.identity);
-                    bulletSpawn = true;
+                    //bulletSpawn = true;
                 }
                 ticker = 0;
             }

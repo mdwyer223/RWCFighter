@@ -16,6 +16,11 @@ public class HealthBarScript : MonoBehaviour {
     public float Value {
         set {
             fillAmount = MapHealth(value, MaxVal);
+            Debug.Log("New health value: " + fillAmount);
+        }
+
+        get {
+            return fillAmount;
         }
     }
 
@@ -34,6 +39,7 @@ public class HealthBarScript : MonoBehaviour {
     }
 
     private float MapHealth(float currentHealth, float maxHealth) {
+        Debug.Log("Running health function...");
         return currentHealth / maxHealth; 
     }
 }
